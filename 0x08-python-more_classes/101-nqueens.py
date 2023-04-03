@@ -33,6 +33,7 @@ def checkBoard(board, col):
             board[col] = row
             checkBoard(board, col + 1)
 
+
 if __name__ == "__main__":
     import sys
 
@@ -42,7 +43,7 @@ if __name__ == "__main__":
     n = 0
     try:
         n = int(sys.argv[1])
-    except:
+    except Exception as e:
         print("N must be a number")
         sys.exit(1)
     if n < 4:
