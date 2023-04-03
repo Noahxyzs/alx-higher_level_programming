@@ -1,19 +1,18 @@
 #!/usr/bin/python3
 """
-A Rectangle
+class rectangle
 """
 
 
 class Rectangle:
     """
-    functions and data
+    rectangle
     """
-
     number_of_instances = 0
-    print_symbol = "#"
+    print_hash = "#"
 
     def __init__(self, width=0, height=0):
-        """instatiation
+        """intializaion dender method
         """
         self.width = width
         self.height = height
@@ -21,13 +20,13 @@ class Rectangle:
 
     @property
     def width(self):
-        """Getter width
+        """Getter get width
         """
         return self.__width
 
     @width.setter
     def width(self, value):
-        """Setter width
+        """Setter set width
         """
         if type(value) != int:
             raise TypeError("width must be an integer")
@@ -37,13 +36,13 @@ class Rectangle:
 
     @property
     def height(self):
-        """Getter height
+        """Getter get height
         """
         return self.__height
 
     @height.setter
     def height(self, value):
-        """Setter height
+        """Setter set height
         """
         if type(value) != int:
             raise TypeError("height must be an integer")
@@ -65,23 +64,23 @@ class Rectangle:
             return 2 * (self.__width + self.__height)
 
     def __str__(self):
-        """hsajwushw"""
+        """dendor str method """
         if self.__width == 0 or self.__height == 0:
             return ""
         else:
             string = ""
             for a in range(self.__height):
                 if a == self.__height - 1:
-                    string += self.__width * str(self.print_symbol)
+                    string += self.__width * str(self.print_hash)
                 else:
-                    string += self.__width * str(self.print_symbol) + '\n'
+                    string += self.__width * str(self.print_hash) + '\n'
             return string
 
     def __repr__(self):
-        """Returns a representation of printable string"""
+        """Returns str"""
         return "Rectangle({:d}, {:d})".format(self.__width, self.__height)
 
     def __del__(self):
-        """ Destructors are called when an object gets destroyed """
+        """ magic delete method """
         Rectangle.number_of_instances -= 1
         print("Bye rectangle...")
