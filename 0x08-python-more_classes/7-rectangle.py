@@ -1,18 +1,19 @@
 #!/usr/bin/python3
 """
-class rectangle
+class Rectangle
 """
 
 
 class Rectangle:
     """
-    rectangle
+    create a function 
     """
+
     number_of_instances = 0
-    print_hash = "#"
+    print_symbol = "#"
 
     def __init__(self, width=0, height=0):
-        """intializaion dender method
+        """instatiation
         """
         self.width = width
         self.height = height
@@ -64,23 +65,23 @@ class Rectangle:
             return 2 * (self.__width + self.__height)
 
     def __str__(self):
-        """dendor str method """
+        """magic str"""
         if self.__width == 0 or self.__height == 0:
             return ""
         else:
             string = ""
             for a in range(self.__height):
                 if a == self.__height - 1:
-                    string += self.__width * str(self.print_hash)
+                    string += self.__width * str(self.print_symbol)
                 else:
-                    string += self.__width * str(self.print_hash) + '\n'
+                    string += self.__width * str(self.print_symbol) + '\n'
             return string
 
     def __repr__(self):
-        """Returns str"""
+        """Returns a representation of printable string"""
         return "Rectangle({:d}, {:d})".format(self.__width, self.__height)
 
     def __del__(self):
-        """ magic delete method """
+        """ Destructors are called when an object gets destroyed """
         Rectangle.number_of_instances -= 1
         print("Bye rectangle...")
