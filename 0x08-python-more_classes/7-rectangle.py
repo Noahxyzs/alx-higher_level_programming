@@ -6,9 +6,8 @@ class Rectangle
 
 class Rectangle:
     """
-    create a function 
+    create a function
     """
-
     number_of_instances = 0
     print_symbol = "#"
 
