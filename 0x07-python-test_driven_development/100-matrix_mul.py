@@ -1,106 +1,55 @@
-100-matrix_mul
-======================
+#!/usr/bin/python3
+"""
+Contains the matrix_mul function
+"""
 
-Using ``matrix_mul``
--------------------
 
-Importing the function from the module:
-	>>> matrix_mul = __import__("100-matrix_mul").matrix_mul
-
-Checking for module docstring:
-	 >>> m = __import__("100-matrix_mul").__doc__
-	 >>> len(m) > 1
-	 True
-
-Checking for function docstring:
-	 >>> f = __import__("100-matrix_mul").matrix_mul.__doc__
-         >>> len(f) > 1
-         True
-
-Checking for no args:
-	 >>> matrix_mul()
-	 Traceback (most recent call last):
-	 ...
-	 TypeError: matrix_mul() missing 2 required positional arguments: 'm_a' and 'm_b'
-
-Checking for one too few args:
-	 >>> matrix_mul([[1, 2], [3, 4]])
-	 Traceback (most recent call last):
-	 ...
-	 TypeError: matrix_mul() missing 1 required positional argument: 'm_b'
-
-Checking for too many args:
-	 >>> matrix_mul([[1, 2], [3, 4]], [[5, 6], [7, 8]], [[9, 10], [11, 12]])
-	 Traceback (most recent call last):
-	 ...
-	 TypeError: matrix_mul() takes 2 positional arguments but 3 were given
-
-Checking for normal use with ints and floats:
-	 >>> matrix_mul([[1, 2], [3, 4]], [[1.5, 2.5, 3.5], [4.5, 6.5, 7.5]])
-	 [[10.5, 15.5, 18.5], [22.5, 33.5, 40.5]]
-
-Checking for passing non-list as m_a:
-	 >>> matrix_mul(None, [[1, 2], [3, 4]])
-	 Traceback (most recent call last):
-	 ...
-	 TypeError: m_a must be a list
-
-Checking for passing non-list to m_b:
-	 >>> matrix_mul([[1, 2], [3, 4]], None)
-	 Traceback (most recent call last):
-	 ...
-	 TypeError: m_b must be a list
-
-Checking for passing empty m_a:
-	 >>> matrix_mul([], [[1, 2], [3, 4]])
-	 Traceback (most recent call last):
-	 ...
-	 ValueError: m_a can't be empty
-
-Checking for passing m_a with empty rows:
-	 >>> matrix_mul([[], []], [[1, 2], [3, 4]])
-	 Traceback (most recent call last):
-	 ...
-	 ValueError: m_a can't be empty
-
-Checking for passing empty m_b:
-	 >>> matrix_mul([[1, 2], [3, 4]], [])
-	 Traceback (most recent call last):
-	 ...
-	 ValueError: m_b can't be empty
-
-Checking for passing m_b with empty rows:
-	 >>> matrix_mul([[1, 2], [3, 4]], [[]])
-	 Traceback (most recent call last):
-	 ...
-	 ValueError: m_b can't be empty
-
-Checking for uneven m_a:
-	 >>> matrix_mul([[1, 2], [3, 4, 5]], [[1, 2], [3, 4]])
-	 Traceback (most recent call last):
-	 ...
-	 TypeError: each row of m_a must should be of the same size
-
-Checking for uneven m_b:
-	 >>> matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4, 5]])
-	 Traceback (most recent call last):
-	 ...
-	 TypeError: each row of m_b must should be of the same size
-
-Checking for non-number in list in m_a:
-	 >>> matrix_mul([[1, "Hello"], [3, 4]], [[1, 2], [3, 4]])
-	 Traceback (most recent call last):
-	 ...
-	 TypeError: m_a should contain only integers or floats
-
-Checking for non-number in list in m_b:
-	 >>> matrix_mul([[1, 2], [3, 4]], [[1, "Hello"], [3, 4]])
-	 Traceback (most recent call last):
-	 ...
-	 TypeError: m_b should contain only integers or floats
-
-Checking for mismatching matrices:
-	 >>> matrix_mul([[1, 2, 3], [4, 5, 6]], [[1, 2], [3, 4,]])
-	 Traceback (most recent call last):
-	 ...
-	 ValueError: m_a and m_b can't be multiplied
+def matrix_mul(m_a, m_b):
+    """Multiply two matrices(lists of lists of integers/floats)"""
+    if type(m_a) is not list:
+        raise TypeError("m_a must be a list")
+    l1 = len(m_a)
+    if l1 == 0:
+        raise ValueError("m_a can't be empty")
+    l2 = None
+    for i in m_a:
+        if type(i) is not list:
+            raise TypeError("m_a must be a list of lists")
+        if l2 is None:
+            l2 = len(i)
+            if l2 == 0:
+                raise ValueError("m_a can't be empty")
+        if l2 != len(i):
+            raise TypeError("each row of m_a must should be of the same size")
+        for j in i:
+            if type(j) is not int and type(j) is not float:
+                raise TypeError("m_a should contain only integers or floats")
+    if type(m_b) is not list:
+        raise TypeError("m_b must be a list")
+    if len(m_b) == 0:
+        raise ValueError("m_b can't be empty")
+    l3 = None
+    for i in m_b:
+        if type(i) is not list:
+            raise TypeError("m_b must be a list of lists")
+        if l3 is None:
+            l3 = len(i)
+            if l3 == 0:
+                raise ValueError("m_b can't be empty")
+        if l3 != len(i):
+            raise TypeError("each row of m_b must should be of the same size")
+        for j in i:
+            if type(j) is not int and type(j) is not float:
+                raise TypeError("m_b should contain only integers or floats")
+    if l2 != len(m_b):
+        raise ValueError("m_a and m_b can't be multiplied")
+    matrix = []
+    for i in range(l1):
+        l = []
+        for j in range(l3):
+            n = 0
+            for k in range(l2):
+                n += m_a[i][k] * m_b[k][j]
+            l.append(n)
+        matrix.append(l)
+    return matrix
