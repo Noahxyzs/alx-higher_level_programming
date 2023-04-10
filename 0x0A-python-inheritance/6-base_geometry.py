@@ -2,6 +2,8 @@
 '''
         Empty class
 '''
+
+
 class BaseGeometry():
     '''
         BaseGeometry
