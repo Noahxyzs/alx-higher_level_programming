@@ -2,9 +2,7 @@
 import json
 from sys import argv
 """
-This file contains a function that adds
-all arguments to a python list and saves
-to a file
+function that add and save
 """
 
 
