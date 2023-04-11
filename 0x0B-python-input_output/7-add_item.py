@@ -1,13 +1,25 @@
 #!/usr/bin/python3
-"""add_item"""
+''' add_item '''
 import sys
-from os import path
+save_to_json = __import__("5-save_to_json_file").save_to_json_file
+load_from_json = __import__("6-load_from_json_file").load_from_json_file
 
 
-save_to_json_file = __import__('5-save_to_json_file').save_to_json_file
-load_from_json_file = __import__('6-load_from_json_file').load_from_json_file
+def add_item(args="", filename=""):
+    '''
+    add item
+    '''
+    try:
+        allArgs = load_from_json(filename)
+    except:
+        allArgs = []
 
-new_list = []
-if path.isfile("add_item.json"):
-    new_list = load_from_json_file("add_item.json")
-save_to_json_file(new_list + sys.argv[1:], "add_item.json")
+    for item in args:
+        allArgs.append(item)
+    save_to_json(allArgs, filename)
+
+
+if __name__ == "__main__":
+    args = sys.argv[1:]
+    filename = "add_item.json"
+    add_item(args, filename)
