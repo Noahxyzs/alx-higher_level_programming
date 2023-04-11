@@ -13,7 +13,7 @@ filename = 'add_item.json'
 
 try:
     new = load_json(filename)
-except (ValueError, FileNotFoundError):
+except Exception as e:
     new = []
 
 new = new + argv[1:]
