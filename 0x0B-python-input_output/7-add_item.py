@@ -11,7 +11,7 @@ def add_item(args="", filename=""):
     '''
     try:
         allArgs = load_from_json(filename)
-    except Exception e:
+    except Exception as e:
         allArgs = []
 
     for item in args:
