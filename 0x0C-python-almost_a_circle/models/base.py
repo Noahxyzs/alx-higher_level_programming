@@ -79,7 +79,7 @@ class Base:
                 lst = cls.from_json_string(myFile.read())
             for i, j in enumerate(lst):
                 lst[i] = cls.create(**lst[i])
-        except:
+        except Exception as e:
             pass
         return (lst)
 
