@@ -18,7 +18,7 @@ class Base:
         """
         __init__
         """
-        if id is not None:
+        if id != None:
             self.id = id
         else:
             Base.__nb_objects += 1
@@ -29,7 +29,7 @@ class Base:
         """
         to_json_string
         """
-        if list_dictionaries is None:
+        if list_dictionaries == None:
             list_dictionaries = []
         return (json.dumps(list_dictionaries))
 
@@ -40,7 +40,7 @@ class Base:
         """
         fn = cls.__name__ + ".json"
         ob = []
-        if list_objs is not None:
+        if list_objs != None:
             for i in list_objs:
                 ob.append(cls.to_dictionary(i))
         with open(fn, mode="w") as myFile:
@@ -51,7 +51,7 @@ class Base:
         """
         From_json_string
         """
-        if json_string is None or len(json_string) == 0:
+        if json_string == None or len(json_string) == 0:
             return ([])
         return (json.loads(json_string))
 
@@ -60,9 +60,9 @@ class Base:
         """
         create
         """
-        if cls.__name__ is "Rectangle":
+        if cls.__name__ == "Rectangle":
             temp = cls(1, 1)
-        if cls.__name__ is "Square":
+        if cls.__name__ == "Square":
             temp = cls(1)
         temp.update(**dictionary)
         return (temp)
