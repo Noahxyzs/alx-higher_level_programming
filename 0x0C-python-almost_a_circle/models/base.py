@@ -4,7 +4,6 @@ creating modules for the base class
 """
 import json
 import csv
-import turtle
 from random import choice as random
 
 
