@@ -1,5 +1,9 @@
 #!/usr/bin/node
-const sum = (function add (a, b) {
-  return parseInt(a) + parseInt(b);
-})(process.argv[2], process.argv[3]);
-console.log(sum);
+
+if (isNaN(process.argv[2])) {
+  console.log('Missing size');
+} else {
+  for (let i = 0; i < parseInt(process.argv[2]); i++) {
+    console.log('X'.repeat(parseInt(process.argv[2])));
+  }
+}
