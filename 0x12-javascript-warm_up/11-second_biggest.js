@@ -1,8 +1,2 @@
 #!/usr/bin/node
-
-if (process.argv.length <= 3) {
-  console.log(0);
-} else {
-  const list = process.argv.sort();
-  console.log(list.reverse()[1]);
-}
+console.log(process.argv.length < 4 ? 0 : process.argv.slice(2).sort((a, b) => b - a)[1]);
