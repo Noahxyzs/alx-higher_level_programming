@@ -1,30 +1,40 @@
 #!/usr/bin/python3
-
-"""
-    A script that lists all states from the database hbtn_0e_0_usa
-    Username, password and database names are given as user args
-"""
-
-
-import sys
+"""script that lists all states from the database hbtn_0e_0_usa"""
 import MySQLdb
+from sys import argv
 
 
-if __name__ == '__main__':
-    db = MySQLdb.connect(user=sys.argv[1],
-                         passwd=sys.argv[2],
-                         db=sys.argv[3],
-                         host='localhost',
-                         port=3306)
+def get__db():
+    """Takes arguments argv to list from database
 
-    cursor = db.cursor()
+    Arguments:
+        argv[1]: mysql username
+        argv[2]: mysql password
+        argv[3]: database name
+    """
+    db = MySQLdb.connect(host="localhost",
+                         port=3306,
+                         user=argv[1],
+                         passwd=argv[2],
+                         db=argv[3],
+                         charset="utf8"
+                         )
 
-    cursor.execute("SELECT * FROM states ORDER BY id ASC")
+    # Getting a cursor in MySQLdb python
+    cur = db.cursor()
 
-    data = cursor.fetchall()
+    # Executing db queries
+    cur.execute("SELECT * FROM states ORDER BY id ASC")
 
-    for row in data:
+    # fetches all the rows of a query result
+    query_rows = cur.fetchall()
+
+    # Printing the result one in one
+    for row in query_rows:
         print(row)
 
-    cursor.close()
+    cur.close()
     db.close()
+
+if __name__ == '__main__':
+    get__db()
