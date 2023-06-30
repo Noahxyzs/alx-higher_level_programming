@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 """initializate"""
 from sys import argv
-from urllib.request import urlopen, Request
-from urllib.parse import urlencode
+from urllib
 
 
 def post_email():
