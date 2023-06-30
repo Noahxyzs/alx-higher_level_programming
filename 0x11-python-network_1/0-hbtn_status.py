@@ -1,14 +1,17 @@
 #!/usr/bin/python3
-"""script for testing status of web pages
-"""
-if __name__ == "__main__":
-    import urllib.request
-    url = "https://intranet.hbtn.io/status"
-    with urllib.request.urlopen(url) as response:
-        bytes_content = response.read()
-        content = bytes_content.decode('utf-8')
-        print_str = '''Body response:
-\t- type: {}
-\t- content: {}
-\t- utf8 content: {}'''.format(type(bytes_content), bytes_content, content)
-        print(print_str)
+"""initializate"""
+from urllib.request import urlopen
+
+
+def hbtn_status_0():
+    """function show my status"""
+    with urlopen('https://intranet.hbtn.io/status') as response:
+        html = response.read()
+        utf8 = html.decode('utf-8')
+        print("Body response:\n\t- type: {}".format(type(html)))
+        print("\t- content: {}\n\t- utf8 content: {}".
+              format(html, utf8, end=""))
+
+
+if __name__ == '__main__':
+    hbtn_status_0()
