@@ -1,16 +1,22 @@
 #!/usr/bin/node
 const request = require('request');
-request(process.argv[2], function (err, response, body) {
-  if (!err) {
-    const todos = JSON.parse(body);
-    const completed = {};
-    todos.forEach((todo) => {
-      if (todo.completed && completed[todo.userId] === undefined) {
-        completed[todo.userId] = 1;
-      } else if (todo.completed) {
-        completed[todo.userId] += 1;
+const apiUrl = process.argv[2];
+const tasksDict = {};
+request.get(apiUrl, (error, response, body) => {
+  if (error) {
+    console.log(error);
+  } else {
+    const tasks = JSON.parse(body);
+    for (let i = 0; i < tasks.length; i++) {
+      const key = tasks[i].userId;
+      if (tasks[i].completed) {
+        if (!(key in tasksDict)) {
+          tasksDict[key] = 1;
+        } else {
+          tasksDict[key] += 1;
+        }
       }
-    });
-    console.log(completed);
+    }
   }
+  console.log(tasksDict);
 });
